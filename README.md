@@ -20,23 +20,23 @@ Ce projet permet d'analyser et de valider des cycles de stérilisation en extray
 ### Étapes d'installation
 
 1. **Cloner le dépôt**
+
    ```bash
    git clone <url-du-dépôt>
    cd ocr_autoclave
    ```
 
 2. **Créer un environnement virtuel**
+
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    ```
 
 3. **Activer l'environnement virtuel**
-   
    - Sur Linux/Mac :
      ```bash
      source venv/bin/activate
      ```
-   
    - Sur Windows :
      ```bash
      venv\Scripts\activate
@@ -54,7 +54,7 @@ Ce projet permet d'analyser et de valider des cycles de stérilisation en extray
 Pour lancer la validation du cycle par défaut :
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 Le script analyse automatiquement le fichier `010939.grs` présent dans le répertoire.
@@ -101,6 +101,7 @@ Le système de logging génère deux types de sortie :
 2. **Fichier** (`ocr_autoclave.log`) : Logs techniques avec timestamps pour débogage
 
 Niveaux de logging :
+
 - `INFO` : Résultats normaux et informations
 - `WARNING` : Données manquantes ou anomalies mineures
 - `ERROR` : Erreurs critiques et non-conformités
@@ -112,28 +113,3 @@ Niveaux de logging :
 
 Pour tester avec différents fichiers `.grs`, placez-les dans le répertoire principal et modifiez la variable `fichier_grs` dans `main.py`.
 
-### Prétraitement d'images
-
-Utilisez `debug_preprocessing.py` pour ajuster les paramètres de seuillage avant l'OCR :
-
-```python
-# Modifier ces valeurs selon vos besoins
-SEUIL = 160
-CHEMIN_IMAGE = "votre_image.png"
-```
-
-## Contribuer
-
-1. Fork du projet
-2. Créer une branche feature (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. Commit des changements (`git commit -am 'Ajout nouvelle fonctionnalité'`)
-4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. Créer une Pull Request
-
-## Licence
-
-[À spécifier selon vos besoins]
-
-## Contact
-
-[À compléter avec vos informations]
