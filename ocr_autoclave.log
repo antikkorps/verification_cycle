@@ -1,0 +1,120 @@
+2025-10-01 16:52:26,936 - INFO - 
+==================================================
+2025-10-01 16:52:26,936 - INFO -           DONNÉES EXTRAITES POUR VALIDATION
+2025-10-01 16:52:26,936 - INFO - ==================================================
+
+2025-10-01 16:52:26,936 - INFO - 
+==================================================
+2025-10-01 16:52:26,936 - INFO -           VALIDATION COMPLÈTE DU CYCLE
+2025-10-01 16:52:26,936 - INFO - ==================================================
+
+2025-10-01 16:52:26,936 - INFO - --- 1. Validation Température Palier ---
+2025-10-01 16:52:26,937 - INFO -   - T° min >= 134.3°C : ❌ NON CONFORME (mesuré: 133.8°C)
+2025-10-01 16:52:26,937 - INFO -   - T° max <= 136.4°C : ✅ OK (mesuré: 135.2°C)
+2025-10-01 16:52:26,937 - INFO - 
+--- 2. Validation des Phases de Vide ---
+2025-10-01 16:52:26,937 - INFO -   - Nombre de phases de vide conformes >= 8 : ✅ OK (trouvé: 8)
+2025-10-01 16:52:26,937 - INFO -   - Pression <= 18 kPa sur au moins 8 phases : ✅ OK
+2025-10-01 16:52:26,937 - INFO -   - Détail des phases d'injection :
+2025-10-01 16:52:26,937 - INFO -     Phase 01 (00:00:12) : 68.3 °C / 101.9 kPa -> NON CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 02 (00:10:43) : 77.2 °C / 15.2 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 03 (00:12:17) : 77.9 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 04 (00:13:48) : 74.3 °C / 16.0 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 05 (00:15:14) : 78.5 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 06 (00:16:38) : 79.1 °C / 15.8 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 07 (00:17:58) : 80.4 °C / 15.5 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 08 (00:19:15) : 82.2 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 09 (00:20:29) : 82.6 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 10 (00:23:01) : 105.6 °C / 110.0 kPa -> NON CONFORME
+2025-10-01 16:52:26,937 - INFO -     Phase 11 (00:24:22) : 105.8 °C / 109.4 kPa -> NON CONFORME
+2025-10-01 16:52:26,937 - INFO - 
+--- 3. Validation Pression/Température (Régnault) ---
+2025-10-01 16:52:26,949 - INFO -   - Ligne 1740 (Palier de stérilisation): T=134.2°C, P=304.6kPa -> Statut: Conforme. (Attendu: (301.0, 311.0) kPa)
+2025-10-01 16:52:26,949 - INFO -   - Ligne 2852 (Dévaporisation): T=135.2°C, P=312.7kPa -> Statut: Conforme. (Attendu: (310.0, 320.0) kPa)
+2025-10-01 16:52:26,949 - INFO - 
+==================================================
+2025-10-01 16:52:26,949 - ERROR - ❌ RÉSULTAT FINAL : CYCLE NON CONFORME
+2025-10-01 16:52:26,949 - INFO - ==================================================
+2025-10-01 16:52:54,164 - INFO - 
+==================================================
+2025-10-01 16:52:54,164 - INFO -           DONNÉES EXTRAITES POUR VALIDATION
+2025-10-01 16:52:54,164 - INFO - ==================================================
+
+2025-10-01 16:52:54,164 - INFO - 
+==================================================
+2025-10-01 16:52:54,164 - INFO -           VALIDATION COMPLÈTE DU CYCLE
+2025-10-01 16:52:54,164 - INFO - ==================================================
+
+2025-10-01 16:52:54,164 - INFO - --- 1. Validation Température Palier ---
+2025-10-01 16:52:54,164 - INFO -   - T° min >= 134.3°C : ❌ NON CONFORME (mesuré: 133.8°C)
+2025-10-01 16:52:54,164 - INFO -   - T° max <= 136.4°C : ✅ OK (mesuré: 135.2°C)
+2025-10-01 16:52:54,164 - INFO - 
+--- 2. Validation des Phases de Vide ---
+2025-10-01 16:52:54,164 - INFO -   - Nombre de phases de vide conformes >= 8 : ✅ OK (trouvé: 8)
+2025-10-01 16:52:54,164 - INFO -   - Pression <= 18 kPa sur au moins 8 phases : ✅ OK
+2025-10-01 16:52:54,164 - INFO -   - Détail des phases d'injection :
+2025-10-01 16:52:54,164 - INFO -     Phase 01 (00:00:12) : 68.3 °C / 101.9 kPa -> NON CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 02 (00:10:43) : 77.2 °C / 15.2 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 03 (00:12:17) : 77.9 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 04 (00:13:48) : 74.3 °C / 16.0 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 05 (00:15:14) : 78.5 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 06 (00:16:38) : 79.1 °C / 15.8 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 07 (00:17:58) : 80.4 °C / 15.5 kPa -> CONFORME
+2025-10-01 16:52:54,164 - INFO -     Phase 08 (00:19:15) : 82.2 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:52:54,165 - INFO -     Phase 09 (00:20:29) : 82.6 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:52:54,165 - INFO -     Phase 10 (00:23:01) : 105.6 °C / 110.0 kPa -> NON CONFORME
+2025-10-01 16:52:54,165 - INFO -     Phase 11 (00:24:22) : 105.8 °C / 109.4 kPa -> NON CONFORME
+2025-10-01 16:52:54,165 - INFO - 
+--- 3. Validation Pression/Température (Régnault) ---
+2025-10-01 16:52:54,171 - INFO -   - Ligne 1740 (Palier de stérilisation): T=134.2°C, P=304.6kPa -> Statut: Conforme. (Attendu: (301.0, 311.0) kPa)
+2025-10-01 16:52:54,171 - INFO -   - Ligne 2852 (Dévaporisation): T=135.2°C, P=312.7kPa -> Statut: Conforme. (Attendu: (310.0, 320.0) kPa)
+2025-10-01 16:52:54,171 - INFO - 
+==================================================
+2025-10-01 16:52:54,171 - ERROR - ❌ RÉSULTAT FINAL : CYCLE NON CONFORME
+2025-10-01 16:52:54,171 - INFO - ==================================================
+2025-10-01 16:54:53,011 - INFO - --- 1. Validation Température Palier ---
+2025-10-01 16:54:53,011 - INFO -   - T° min >= 134.3°C : ❌ NON CONFORME (mesuré: 133.8°C)
+2025-10-01 16:54:53,012 - INFO -   - T° max <= 136.4°C : ✅ OK (mesuré: 135.2°C)
+2025-10-01 16:54:53,012 - INFO - 
+--- 2. Validation des Phases de Vide ---
+2025-10-01 16:54:53,012 - INFO -   - Nombre de phases de vide conformes >= 8 : ✅ OK (trouvé: 8)
+2025-10-01 16:54:53,012 - INFO -   - Pression <= 18 kPa sur au moins 8 phases : ✅ OK
+2025-10-01 16:54:53,012 - INFO -   - Détail des phases d'injection :
+2025-10-01 16:54:53,012 - INFO -     Phase 01 (00:00:12) : 68.3 °C / 101.9 kPa -> NON CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 02 (00:10:43) : 77.2 °C / 15.2 kPa -> CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 03 (00:12:17) : 77.9 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 04 (00:13:48) : 74.3 °C / 16.0 kPa -> CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 05 (00:15:14) : 78.5 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 06 (00:16:38) : 79.1 °C / 15.8 kPa -> CONFORME
+2025-10-01 16:54:53,012 - INFO -     Phase 07 (00:17:58) : 80.4 °C / 15.5 kPa -> CONFORME
+2025-10-01 16:54:53,013 - INFO -     Phase 08 (00:19:15) : 82.2 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:54:53,013 - INFO -     Phase 09 (00:20:29) : 82.6 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:54:53,013 - INFO -     Phase 10 (00:23:01) : 105.6 °C / 110.0 kPa -> NON CONFORME
+2025-10-01 16:54:53,013 - INFO -     Phase 11 (00:24:22) : 105.8 °C / 109.4 kPa -> NON CONFORME
+2025-10-01 16:54:53,013 - INFO - 
+--- 3. Validation Pression/Température (Régnault) ---
+2025-10-01 16:54:53,024 - INFO -   - Ligne 1740 (Palier de stérilisation): T=134.2°C, P=304.6kPa -> Statut: Conforme. (Attendu: (301.0, 311.0) kPa)
+2025-10-01 16:54:53,024 - INFO -   - Ligne 2852 (Dévaporisation): T=135.2°C, P=312.7kPa -> Statut: Conforme. (Attendu: (310.0, 320.0) kPa)
+2025-10-01 16:57:27,814 - INFO - --- 1. Validation Température Palier ---
+2025-10-01 16:57:27,814 - INFO -   - T° min >= 134.3°C : ❌ NON CONFORME (mesuré: 133.8°C)
+2025-10-01 16:57:27,814 - INFO -   - T° max <= 136.4°C : ✅ OK (mesuré: 135.2°C)
+2025-10-01 16:57:27,814 - INFO - 
+--- 2. Validation des Phases de Vide ---
+2025-10-01 16:57:27,814 - INFO -   - Nombre de phases de vide conformes >= 8 : ✅ OK (trouvé: 8)
+2025-10-01 16:57:27,814 - INFO -   - Pression <= 18 kPa sur au moins 8 phases : ✅ OK
+2025-10-01 16:57:27,814 - INFO -   - Détail des phases d'injection :
+2025-10-01 16:57:27,814 - INFO -     Phase 01 (00:00:12) : 68.3 °C / 101.9 kPa -> NON CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 02 (00:10:43) : 77.2 °C / 15.2 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 03 (00:12:17) : 77.9 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 04 (00:13:48) : 74.3 °C / 16.0 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 05 (00:15:14) : 78.5 °C / 15.9 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 06 (00:16:38) : 79.1 °C / 15.8 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 07 (00:17:58) : 80.4 °C / 15.5 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 08 (00:19:15) : 82.2 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:57:27,814 - INFO -     Phase 09 (00:20:29) : 82.6 °C / 15.6 kPa -> CONFORME
+2025-10-01 16:57:27,815 - INFO -     Phase 10 (00:23:01) : 105.6 °C / 110.0 kPa -> NON CONFORME
+2025-10-01 16:57:27,815 - INFO -     Phase 11 (00:24:22) : 105.8 °C / 109.4 kPa -> NON CONFORME
+2025-10-01 16:57:27,815 - INFO - 
+--- 3. Validation Pression/Température (Régnault) ---
+2025-10-01 16:57:27,820 - INFO -   - Ligne 1740 (Palier de stérilisation): T=134.2°C, P=304.6kPa -> Statut: Conforme. (Attendu: (301.0, 311.0) kPa)
+2025-10-01 16:57:27,820 - INFO -   - Ligne 2852 (Dévaporisation): T=135.2°C, P=312.7kPa -> Statut: Conforme. (Attendu: (310.0, 320.0) kPa)

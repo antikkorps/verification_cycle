@@ -1,7 +1,19 @@
+import logging
 import re
 from pprint import pprint
 
 import regnault_validator
+
+# Configuration du logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('ocr_autoclave.log')
+    ]
+)
+logger = logging.getLogger(__name__)
 
 
 def analyser_cycle_complet_grs(chemin_fichier: str) -> dict:
@@ -16,19 +28,17 @@ def analyser_cycle_complet_grs(chemin_fichier: str) -> dict:
     Returns:
         Un dictionnaire contenant toutes les données nécessaires à la validation.
     """
-    donnees = {
+    donnees: dict = {
         "phases_de_vide": [],
-        "phases_de_vide_kPa": [],
-        "file_content": ""
+        "phases_de_vide_kPa": []
     }
 
     try:
         # Utiliser 'latin-1' est souvent plus sûr pour les fichiers générés par des équipements
         with open(chemin_fichier, 'r', encoding='latin-1') as f_in:
             lignes_brutes = f_in.readlines()
-            donnees["file_content"] = "".join(lignes_brutes)
         
-        lignes = donnees["file_content"].splitlines()
+        lignes = [ligne.strip() for ligne in lignes_brutes]
 
         # --- PASSE 1: Analyse du détail du cycle pour les vides ---
         for ligne_str in lignes:
@@ -85,7 +95,7 @@ def analyser_cycle_complet_grs(chemin_fichier: str) -> dict:
             donnees['temp_max_C'] = float(donnees_resume['41']) / 10.0
 
     except FileNotFoundError:
-        print(f"ERREUR: Fichier introuvable à '{chemin_fichier}'")
+        logger.error(f"Fichier introuvable à '{chemin_fichier}'")
         return {}
         
     return donnees
@@ -99,7 +109,7 @@ def valider_donnees_completes(donnees: dict):
     validation_globale_ok = True
 
     # --- Règle 1: Validation de la plage de température ---
-    print("--- 1. Validation Température Palier ---")
+    logger.info("--- 1. Validation Température Palier ---")
     if 'temp_min_C' in donnees and 'temp_max_C' in donnees:
         t_min = donnees['temp_min_C']
         t_max = donnees['temp_max_C']
@@ -107,33 +117,33 @@ def valider_donnees_completes(donnees: dict):
         is_min_valid = t_min >= 134.3
         is_max_valid = t_max <= 136.4
         
-        print(f"  - T° min >= 134.3°C : {'✅ OK' if is_min_valid else '❌ NON CONFORME'} (mesuré: {t_min}°C)")
-        print(f"  - T° max <= 136.4°C : {'✅ OK' if is_max_valid else '❌ NON CONFORME'} (mesuré: {t_max}°C)")
+        logger.info(f"  - T° min >= 134.3°C : {'✅ OK' if is_min_valid else '❌ NON CONFORME'} (mesuré: {t_min}°C)")
+        logger.info(f"  - T° max <= 136.4°C : {'✅ OK' if is_max_valid else '❌ NON CONFORME'} (mesuré: {t_max}°C)")
         
         if not is_min_valid or not is_max_valid:
             validation_globale_ok = False
     else:
-        print("  - ⚠️ Données de température manquantes")
+        logger.warning("  - ⚠️ Données de température manquantes")
         validation_globale_ok = False
 
     # --- Règle 2: Validation des phases de vide ---
-    print("\n--- 2. Validation des Phases de Vide ---")
+    logger.info("\n--- 2. Validation des Phases de Vide ---")
     if 'phases_de_vide' in donnees and donnees['phases_de_vide']:
         phases = donnees['phases_de_vide']
         phases_conformes = [phase for phase in phases if phase['conforme']]
 
         nombre_phases = len(phases_conformes)
         is_nombre_ok = nombre_phases >= 8
-        print(f"  - Nombre de phases de vide conformes >= 8 : {'✅ OK' if is_nombre_ok else '❌ NON CONFORME'} (trouvé: {nombre_phases})")
+        logger.info(f"  - Nombre de phases de vide conformes >= 8 : {'✅ OK' if is_nombre_ok else '❌ NON CONFORME'} (trouvé: {nombre_phases})")
 
         is_pressions_ok = is_nombre_ok
-        print(f"  - Pression <= 18 kPa sur au moins 8 phases : {'✅ OK' if is_pressions_ok else '❌ NON CONFORME'}")
+        logger.info(f"  - Pression <= 18 kPa sur au moins 8 phases : {'✅ OK' if is_pressions_ok else '❌ NON CONFORME'}")
 
-        print("  - Détail des phases d'injection :")
+        logger.info("  - Détail des phases d'injection :")
         for i, phase in enumerate(phases, 1):
             statut = "CONFORME" if phase['conforme'] else "NON CONFORME"
             horodatage = phase['horodatage'] or '-'
-            print(
+            logger.info(
                 f"    Phase {i:02d} ({horodatage}) : "
                 f"{phase['temperature_C']:.1f} °C / {phase['pression_kPa']:.1f} kPa -> {statut}"
             )
@@ -141,16 +151,19 @@ def valider_donnees_completes(donnees: dict):
         if not is_nombre_ok or not is_pressions_ok:
             validation_globale_ok = False
     else:
-        print("  - ⚠️ Données des phases de vide manquantes")
+        logger.warning("  - ⚠️ Données des phases de vide manquantes")
         validation_globale_ok = False
 
     # --- Règle 3: Validation Pression/Température (Régnault) ---
-    print("\n--- 3. Validation Pression/Température (Régnault) ---")
-    if 'file_content' in donnees and donnees['file_content']:
-        regnault_results = regnault_validator.validate_grs_file_content(donnees['file_content'])
+    logger.info("\n--- 3. Validation Pression/Température (Régnault) ---")
+    try:
+        with open(fichier_grs, 'r', encoding='latin-1') as f_in:
+            file_content = f_in.read()
+        
+        regnault_results = regnault_validator.validate_grs_file_content(file_content)
         
         if not regnault_results:
-            print("  - ⚠️ Aucune ligne de 'Palier de stérilisation' ou 'Dévaporisation' trouvée.")
+            logger.warning("  - ⚠️ Aucune ligne de 'Palier de stérilisation' ou 'Dévaporisation' trouvée.")
             validation_globale_ok = False
         else:
             regnault_conforme = True
@@ -158,7 +171,7 @@ def valider_donnees_completes(donnees: dict):
                 if result['status'] != "Conforme":
                     regnault_conforme = False
                 
-                print(
+                logger.info(
                     f"  - Ligne {result['line_number']} ({result['line_name']}): "
                     f"T={result['temperature']}°C, P={result['pressure']}kPa -> "
                     f"Statut: {result['status']}. "
@@ -167,8 +180,8 @@ def valider_donnees_completes(donnees: dict):
             
             if not regnault_conforme:
                 validation_globale_ok = False
-    else:
-        print("  - ⚠️ Contenu du fichier GRS manquant pour la validation Régnault.")
+    except Exception as e:
+        logger.error(f"  - ⚠️ Erreur lors de la lecture du fichier GRS: {e}")
         validation_globale_ok = False
 
 
@@ -191,8 +204,8 @@ if __name__ == "__main__":
         print("\n" + "="*50)
         print("          DONNÉES EXTRAITES POUR VALIDATION")
         print("="*50 + "\n")
-        pprint(donnees_extraites)
+        logger.debug(f"Données extraites: {donnees_extraites}")
         
         valider_donnees_completes(donnees_extraites)
     else:
-        print("Aucune donnée n'a pu être extraite du fichier.")
+        logger.error("Aucune donnée n'a pu être extraite du fichier.")
